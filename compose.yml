@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  php:
+    build: .
+    volumes:
+      - .:/usr/myapp
+    working_dir: /usr/myapp
+    command: php -S 0.0.0.0:80 -t public public/index.php
+    ports:
+      - ${HTTP_PORT}:80
