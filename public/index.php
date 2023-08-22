@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Okashoi\MyersTriangle\Triangle;
+use Okashoi\MyersTriangle\{InputData, Triangle};
 
 $a = $_GET['a'] ?? '';
 $b = $_GET['b'] ?? '';
@@ -13,7 +13,8 @@ $c = $_GET['c'] ?? '';
 $message = '三角形の3辺の長さ（整数）を入力してください。';
 if ($a !== '' && $b !== '' && $c !== '') {
     try {
-        $triangle = new Triangle($a, $b, $c);
+        $inputData = new InputData($a, $b, $c);
+        $triangle = new Triangle($inputData->a, $inputData->b, $inputData->c);
         $message = '入力された三角形は' . $triangle->getType() . 'です。';
     } catch (InvalidArgumentException $e) {
         $message = $e->getMessage();

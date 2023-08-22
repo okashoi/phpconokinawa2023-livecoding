@@ -6,36 +6,19 @@ namespace Okashoi\MyersTriangle;
 
 use InvalidArgumentException;
 
-class Triangle
+readonly class Triangle
 {
-    private $a; // 辺 A の長さ
-    private $b; // 辺 B の長さ
-    private $c; // 辺 C の長さ
-
     public function __construct(
-        $a,
-        $b,
-        $c,
+        /** @var int 辺 A の長さ */
+        private int $a,
+        /** @var int 辺 B の長さ */
+        private int $b,
+        /** @var int 辺 C の長さ */
+        private int $c,
     ) {
-        $a = filter_var($a, FILTER_VALIDATE_INT);
-        $b = filter_var($b, FILTER_VALIDATE_INT);
-        $c = filter_var($c, FILTER_VALIDATE_INT);
-
-        if (!is_int($a) || !is_int($b) || !is_int($c)) {
-            throw new InvalidArgumentException('三角形の3辺の長さは正の整数でなければなりません。');
-        }
-
-        if ($a <= 0 || $b <= 0 || $c <= 0) {
-            throw new InvalidArgumentException('三角形の3辺の長さは正の整数でなければなりません。');
-        }
-
         if ($a + $b <= $c || $b + $c <= $a || $c + $a <= $b) {
             throw new InvalidArgumentException('三角形が成立しません。');
         }
-
-        $this->a = $a;
-        $this->b = $b;
-        $this->c = $c;
     }
 
     /**
