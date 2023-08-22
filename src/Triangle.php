@@ -21,19 +21,13 @@ readonly class Triangle
         }
     }
 
-    /**
-     * 辺の長さにもとづいて「正三角形」「二等辺三角形」「不等辺三角形」のいずれかを文字列として返す
-     */
-    public function getType(): string
+    public function isEquilateral(): bool
     {
-        if ($this->a === $this->b && $this->b === $this->c) {
-            return '正三角形';
-        }
+        return $this->a === $this->b && $this->b === $this->c;
+    }
 
-        if ($this->a === $this->b || $this->b === $this->c || $this->c === $this->a) {
-            return '二等辺三角形';
-        }
-
-        return '不等辺三角形';
+    public function isIsosceles(): bool
+    {
+        return $this->a === $this->b || $this->b === $this->c || $this->c === $this->a;
     }
 }

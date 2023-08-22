@@ -15,7 +15,13 @@ if ($a !== '' && $b !== '' && $c !== '') {
     try {
         $inputData = new InputData($a, $b, $c);
         $triangle = new Triangle($inputData->a, $inputData->b, $inputData->c);
-        $message = '入力された三角形は' . $triangle->getType() . 'です。';
+
+        $type = match (true) {
+            $triangle->isEquilateral() => '正三角形',
+            $triangle->isIsosceles() => '二等辺三角形',
+            default => '不等辺三角形',
+        };
+        $message = '入力された三角形は' . $type . 'です。';
     } catch (InvalidArgumentException $e) {
         $message = $e->getMessage();
     }

@@ -9,20 +9,38 @@ use PHPUnit\Framework\Attributes\{DataProvider, Test};
 class TriangleTest extends TestCase
 {
     #[Test]
-    #[DataProvider('getTypeDataProvider')]
-    public function getType(int $a, int $b, int $c, string $expected): void
+    #[DataProvider('isEquilateralDataProvider')]
+    public function isEquilateral(int $a, int $b, int $c, bool $expected): void
     {
         $triangle = new Triangle($a, $b, $c);
 
-        $this->assertSame($expected, $triangle->getType());
+        $this->assertSame($expected, $triangle->isEquilateral());
     }
 
-    public static function getTypeDataProvider(): array
+    public static function isEquilateralDataProvider(): array
     {
         return [
-            '三辺の長さが等しければ正三角形であること' => [1, 1, 1, '正三角形'],
-            '二辺の長さが等しければ二等辺三角形であること' => [1, 2, 2, '二等辺三角形'],
-            '三辺の長さがすべて異なれば不等辺三角形であること' => [2, 3, 4, '不等辺三角形'],
+            [1, 1, 1, true],
+            [1, 2, 2, false],
+            [2, 3, 4, false],
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('isIsoscelesDataProvider')]
+    public function isIsosceles(int $a, int $b, int $c, bool $expected): void
+    {
+        $triangle = new Triangle($a, $b, $c);
+
+        $this->assertSame($expected, $triangle->isIsosceles());
+    }
+
+    public static function isIsoscelesDataProvider(): array
+    {
+        return [
+            [1, 1, 1, true],
+            [1, 2, 2, true],
+            [2, 3, 4, false],
         ];
     }
 
