@@ -18,7 +18,14 @@ class Triangle
      */
     public function getType(): string
     {
-        // TODO: 実装
+        if ($this->a === $this->b && $this->b === $this->c) {
+            return '正三角形';
+        }
+
+        if ($this->a === $this->b || $this->b === $this->c || $this->c === $this->a) {
+            return '二等辺三角形';
+        }
+
         return '不等辺三角形';
     }
 }
