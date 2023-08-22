@@ -25,4 +25,23 @@ class TriangleTest extends TestCase
             '三辺の長さがすべて異なれば不等辺三角形であること' => [2, 3, 4, '不等辺三角形'],
         ];
     }
+
+    #[Test]
+    #[DataProvider('invalidArgumentDataProvider')]
+    public function 三辺の長さは正の整数でなければならないこと($a, $b, $c): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('三角形の3辺の長さは正の整数でなければなりません。');
+
+        new Triangle($a, $b, $c);
+    }
+
+    public static function invalidArgumentDataProvider()
+    {
+        return [
+            [1.1,  1,   1],
+            [  1, -1,   1],
+            [  1,  1, 'a'],
+        ];
+    }
 }

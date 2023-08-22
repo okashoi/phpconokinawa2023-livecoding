@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Okashoi\MyersTriangle;
 
+use InvalidArgumentException;
+
 class Triangle
 {
     public function __construct(
@@ -11,6 +13,13 @@ class Triangle
         private $b, // 辺 B の長さ
         private $c, // 辺 C の長さ
     ) {
+        if (!is_int($a) || !is_int($b) || !is_int($c)) {
+            throw new InvalidArgumentException('三角形の3辺の長さは正の整数でなければなりません。');
+        }
+
+        if ($a <= 0 || $b <= 0 || $c <= 0) {
+            throw new InvalidArgumentException('三角形の3辺の長さは正の整数でなければなりません。');
+        }
     }
 
     /**

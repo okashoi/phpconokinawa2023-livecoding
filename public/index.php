@@ -12,8 +12,12 @@ $c = $_GET['c'] ?? '';
 
 $message = '三角形の3辺の長さ（整数）を入力してください。';
 if ($a !== '' && $b !== '' && $c !== '') {
-    $triangle = new Triangle($a, $b, $c);
-    $message = '入力された三角形は' . $triangle->getType() . 'です。';
+    try {
+        $triangle = new Triangle($a, $b, $c);
+        $message = '入力された三角形は' . $triangle->getType() . 'です。';
+    } catch (InvalidArgumentException $e) {
+        $message = $e->getMessage();
+    }
 }
 ?><!DOCTYPE html>
 <html lang="ja">
