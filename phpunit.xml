@@ -1,0 +1,5 @@
+<phpunit cacheResult="false">
+  <testsuite name="unit">
+    <directory>tests</directory>
+  </testsuite>
+</phpunit>
