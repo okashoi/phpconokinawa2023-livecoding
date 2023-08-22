@@ -29,6 +29,10 @@ class Triangle
             throw new InvalidArgumentException('三角形の3辺の長さは正の整数でなければなりません。');
         }
 
+        if ($a + $b <= $c || $b + $c <= $a || $c + $a <= $b) {
+            throw new InvalidArgumentException('三角形が成立しません。');
+        }
+
         $this->a = $a;
         $this->b = $b;
         $this->c = $c;

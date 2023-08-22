@@ -44,4 +44,13 @@ class TriangleTest extends TestCase
             [  1,  1, 'a'],
         ];
     }
+
+    #[Test]
+    public function 三辺の長さが三角不等式を満たさなければ三角形は成立しないこと(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('三角形が成立しません。');
+
+        new Triangle(1, 2, 3);
+    }
 }
